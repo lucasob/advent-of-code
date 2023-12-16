@@ -1,6 +1,5 @@
 (ns calibration
-  (:require
-    [clojure.java.io :as io])
+  (:require [shared])
   (:import (java.lang Character)
            (java.util Set)))
 
@@ -64,14 +63,10 @@
     (->full-row)
     (->single-int)))
 
-(defn file->rows [file-path]
-  (with-open [reader (io/reader file-path)]
-    (doall (line-seq reader))))
-
 (defn file->calibration-score [file-path]
   (->>
     file-path
-    (file->rows)
+    (shared/file->rows)
     (map row->digits)
     (flatten)
     (reduce +)))

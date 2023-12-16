@@ -1,7 +1,8 @@
 (ns calibration-test
   (:require
     [clojure.test :refer :all]
-    [calibration :as calibration]))
+    [calibration]
+    [shared]))
 
 (deftest row-to-digits
   (testing "A string of just two digits returns the first and last as digits"
@@ -38,7 +39,7 @@
 (deftest file-to-rows
   (testing "Can read the file into rows"
     (is (= ["12abc123" "1a2b3c"]
-           (calibration/file->rows "test_resources/calibration/test_small.txt")))))
+           (shared/file->rows "test_resources/calibration/test_small.txt")))))
 
 (deftest input-example
   (testing "Reading the defined input is correct"
